@@ -1,34 +1,10 @@
-// import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-// export const metadata = {
-//   title: "Eric Deo Alamsyah - Fullstack Web Developer",
-//   description: "Portfolio website of Eric Deo Alamsyah, a skilled fullstack web developer specializing in creating dynamic and responsive web applications.",
-// };
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en">
-//       <body
-//         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-//       >
-//         {children}
-//       </body>
-//     </html>
-//   );
-// }
 import { Orbitron } from "next/font/google";
 import "./globals.css";
+import React from 'react';
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://erickdeoalamsyah.web.id';
+
 
 // Mengimpor font Orbitron
 const orbitron = Orbitron({
@@ -37,13 +13,60 @@ const orbitron = Orbitron({
 });
 
 export const metadata = {
-  title: "Eric Deo Alamsyah - Fullstack Web Developer",
-  description: "Portfolio website of Eric Deo Alamsyah, a skilled fullstack web developer specializing in creating dynamic and responsive web applications.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Eric Deo Alamsyah – Full-Stack Web Engineer',
+    template: '%s | Eric Deo'
+  },
+  description:
+    'Full-Stack Web Engineer yang fokus ke Next.js, Node.js, PostgreSQL, dan sistem produksi yang stabil & cepat.',
+  keywords: [
+    'Full-Stack Developer',
+    'Full-Stack Web Engineer',
+    'Next.js',
+    'React',
+    'Node.js',
+    'Erick Deo Alamsyah',
+    'Eric Deo Alamsyah',
+    'erickdeoalamsyah',
+    'Portfolio'
+  ],
+  authors: [{ name: 'Eric Deo Alamsyah', url: siteUrl }],
+  alternates: {
+    canonical: siteUrl
+  },
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    title: 'Eric Deo – Full-Stack Web Engineer',
+    description:
+      'Portfolio Eric Deo: proyek Next.js, Node.js, dan sistem produksi yang benar-benar dipakai bisnis.',
+    siteName: 'Eric Deo Alamsyah',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Eric Deo Alamsyah Portfolio'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Eric Deo – Full-Stack Web Engineer',
+    description:
+      'Portfolio Eric Deo: proyek Next.js, Node.js, dan sistem produksi yang benar-benar dipakai bisnis.',
+    images: ['/og-image.png']
+  },
+  robots: {
+    index: true,
+    follow: true
+  }
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body
         className={`${orbitron.variable} antialiased`}
       >

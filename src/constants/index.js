@@ -98,7 +98,7 @@ export const projects = [
       "Designed and built the platform from scratch (Next.js, Node/Express, PostgreSQL) to production-ready: modular architecture, secure checkout (Midtrans), real-time chat (Socket.io), bot protection (Arcjet), observability (Docker + Prometheus), and automated tests (Jest).",
     impact: "faster launch, fewer transaction errors, better ops visibility, and a shopping flow that remains stable under real traffic.",
     href: "",
-    image: "/assets/projects/isoneday1.png",
+    image: "/assets/projects/isoneday1.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "React" },
@@ -120,7 +120,7 @@ export const projects = [
       "Digitized cashier and operations (Next.js/React, Node/Express, PostgreSQL) with role-based access and an analytics dashboard delivering real-time insights on revenue, inventory, and mechanic fees.",
     impact:"shorter checkout time, major drop in input/change errors, and quicker daily decisions via precise metrics and filters.",
     href: "",
-    image: "/assets/projects/posbengkel1.png",
+    image: "/assets/projects/posbengkel1.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "React" },
@@ -139,14 +139,15 @@ export const projects = [
       "Modernized end-to-end UI/UX (Nuxt) and restructured CMS (Strapi) with new collection types (auto-grid TikTok embeds, Gallery, Client Logos, Running Schedule) and a clean content API; deployed on VPS.",
     impact: "content goes live faster without a dev loop, brand credibility is elevated, and the content foundation is ready to scale for future campaigns.",
     href: "",
-    image: "/assets/projects/skillstory1.png",
+    image: "/assets/projects/skillstory1.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "Nuxt" },
-      { id: 2, name: "CMS Strapi" },
-      { id: 3, name: "PostgreSQL" },
-      { id: 4, name: "TailwindCSS" },
-      { id: 5, name: "Gitlab" },
+      { id: 2, name: "Vue.js" },
+      { id: 3, name: "CMS Strapi" },
+      { id: 4, name: "PostgreSQL" },
+      { id: 5, name: "TailwindCSS" },
+      { id: 6, name: "Gitlab" },
     ],
   },
   {
@@ -156,7 +157,7 @@ export const projects = [
       "Joined an existing product as a troubleshooter: closed critical bugs (auth, transaction filters, auto-refresh), hardened Email Verification via SMTP & Google OAuth, and designed safe-delete for categories (reassign/cascade) to preserve data integrity.",
     impact:"fewer operational incidents, smoother onboarding, and lighter support load as critical edge cases are addressed.",
     href: "",
-    image: "/assets/projects/kesflo.png",
+    image: "/assets/projects/kesflo.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "Vue.js" },
@@ -173,7 +174,7 @@ export const projects = [
       "Showcased modern React UI (Vite + Tailwind) using TMDB data: category browsing, concise details, and a lightweight watchlist.",
     impact : "demonstrates component craftsmanship, clean state management, plus responsiveness and accessibility that translate directly to production apps.",
     href: "",
-    image: "/assets/projects/disneyfilm.png",
+    image: "/assets/projects/disneyfilm.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "Vite" },
@@ -191,7 +192,7 @@ export const projects = [
       "Built a gradient generator with live preview, dual Color 1/Color 2 pickers, a randomizer, and instant export to both plain CSS and Tailwind utility classes (one-click copy). Implemented with React + Tailwind, with clean formatting for consistent snippets.",
       impact: "accelerates designer–developer workflow, reduces handoff errors, ensures consistent styling tokens, and cuts gradient setup time from minutes to seconds.",
     href: "",
-    image: "/assets/projects/gradient.png",
+    image: "/assets/projects/gradient.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "Vite" },
@@ -208,7 +209,7 @@ export const projects = [
       "Turned OpenWeatherMap into immediate user value: auto-detect location, city search, detailed metrics, and hourly forecasts with a responsive UI (Vite/React/Tailwind).",
       impact:"instant usefulness right after location permission; clean component architecture easy to extend for advanced features.",
     href: "",
-    image: "/assets/projects/weather.png",
+    image: "/assets/projects/weather.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "Vite" },
@@ -226,7 +227,7 @@ export const projects = [
       "Defined a clear front-end architecture (Vite/React/Tailwind, LocalStorage) for transaction inputs, monthly filters, daily/history views with calendar, and concise stats.",
       impact: "users grasp cashflow instantly without a backend; showcases data modeling, friendly filtering UX, and reliable local persistence.",
     href: "",
-    image: "/assets/projects/moneymanagement.png",
+    image: "/assets/projects/moneymanagement.webp",
     bgImage: "/assets/backgrounds/bgproject.webp",
     frameworks: [
       { id: 1, name: "Vite" },
@@ -242,4 +243,29 @@ export const socials = [
   { name: "Instagram", href: "https://www.instagram.com/erickdeoalamsyah/", Icon: FaInstagram },
   { name: "LinkedIn", href: "https://id.linkedin.com/in/ericdeoalamsyah", Icon: FaLinkedinIn },
   { name: "GitHub", href: "https://github.com/erickdeoalamsyah", Icon: FaGithub },
+];
+
+export const EXPERIENCES = [
+  {
+    role: "Full-stack Developer",
+    company: "Skillstory",
+    period: "July 2025 – October 2025",
+    bullets: [
+      "Implemented Google OAuth & SMTP email verification; fixed 7+ critical issues (auth/session refresh, month filter) to stabilize core flows and reduce login/auth incidents.",
+      "Led frontend redesign/refactor; added dynamic required-field validation (Transactions/Categories) to improve data integrity and cut submission errors.",
+      "Set up deployments for Skillstory & Kesflo using Docker/Nginx and GitHub Actions, enabling predictable releases and quick rollbacks.",
+      "Researched/configured n8n for internal workflows; integrated Terms & Conditions and evaluated Mayar for SaaS monetization.",
+    ],
+    stack: ["Next.js","React","Nuxt","Vue","Node.js","Express","PostgreSQL","CMS Strapi","Tailwind","Nginx","Docker","GitHub Actions","n8n","Gitlab"],
+  },
+  {
+    role: "Mobile App Developer",
+    company: "Techno Infinity",
+    period: "2023",
+    bullets: [
+      "Rebuilt Flutter UI with responsive layouts & clearer flows; 15% faster initial load via lazy loading and asset optimization.",
+      "Componentized views and standardized theming to improve readability and delivery speed; aligned with Design/Backend on API contracts & edge cases with clear integration notes.",
+    ],
+    stack: ["Flutter","Android Studio","Figma","GitHub","Dart"],
+  },
 ];

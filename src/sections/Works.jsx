@@ -8,14 +8,19 @@ import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const worksMeta={
+  id: "works",
+  title: "Works",
+  subTitle: "Logic meets Aesthetics, Seamlessly",
+  text: `Featured projects that have been meticulously
+    crafted with passion to drive
+    results and impact.`,
+}
+
 const Works = () => {
   const overlayRefs = useRef([]);
   const previewRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(null);
-
-  const text = `Featured projects that have been meticulously
-    crafted with passion to drive
-    results and impact.`;
 
   const mouse = useRef({ x: 0, y: 0 });
   const moveX = useRef(null);
@@ -103,9 +108,9 @@ const Works = () => {
   return (
     <section id="work" className="flex flex-col min-h-screen pb-20">
       <AnimatedHeaderSection
-        subTitle={"Logic meets Aesthetics, Seamlessly"}
-        title={"Works"}
-        text={text}
+        subTitle={worksMeta.subTitle}
+        title={worksMeta.title}
+        text={worksMeta.text}
         textColor={"text-white"}
         withScrollTrigger={true}
       />

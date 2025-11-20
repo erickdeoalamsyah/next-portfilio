@@ -3,9 +3,14 @@ import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { socials } from "../constants";
 import gsap from "gsap";
 
+const contactMeta ={
+  id: "contact",
+  title: "Contact",
+  subTitle: "You Dream It, I Code it",
+  text: `Got a question, how or project Idea?
+    WE’D love to hear from you and discus further!`,
+}
 const Contact = () => {
-  const text = `Got a question, how or project Idea?
-    WE’D love to hear from you and discus further!`;
   
   useGSAP(() => {
     gsap.from(".social-link", {
@@ -27,9 +32,9 @@ const Contact = () => {
     >
       <div>
         <AnimatedHeaderSection
-          subTitle={"You Dream It, I Code it"}
-          title={"Contact"}
-          text={text}
+          subTitle={contactMeta.subTitle}
+          title={contactMeta.title}
+          text={contactMeta.text}
           textColor={"text-white"}
           withScrollTrigger={true}
         />

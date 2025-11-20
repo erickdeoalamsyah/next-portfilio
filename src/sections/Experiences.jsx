@@ -4,32 +4,15 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
+import { EXPERIENCES } from "../constants";
 
-// ====== DATA (2 item) ======
-const EXPERIENCES = [
-  {
-    role: "Full-stack Developer",
-    company: "Skillstory",
-    period: "July 2025 – October 2025",
-    bullets: [
-      "Implemented Google OAuth & SMTP email verification; fixed 7+ critical issues (auth/session refresh, month filter) to stabilize core flows and reduce login/auth incidents.",
-      "Led frontend redesign/refactor; added dynamic required-field validation (Transactions/Categories) to improve data integrity and cut submission errors.",
-      "Set up deployments for Skillstory & Kesflo using Docker/Nginx and GitHub Actions, enabling predictable releases and quick rollbacks.",
-      "Researched/configured n8n for internal workflows; integrated Terms & Conditions and evaluated Mayar for SaaS monetization.",
-    ],
-    stack: ["Next.js","React","Nuxt","Vue","Node.js","Express","PostgreSQL","CMS Strapi","Tailwind","Nginx","Docker","GitHub Actions","n8n","Gitlab"],
-  },
-  {
-    role: "Mobile App Developer",
-    company: "Techno Infinity",
-    period: "2023",
-    bullets: [
-      "Rebuilt Flutter UI with responsive layouts & clearer flows; 15% faster initial load via lazy loading and asset optimization.",
-      "Componentized views and standardized theming to improve readability and delivery speed; aligned with Design/Backend on API contracts & edge cases with clear integration notes.",
-    ],
-    stack: ["Flutter","Android Studio","Figma","GitHub","Dart"],
-  },
-];
+const experienceMeta={
+  id: "experience",
+  title: "Experience",
+  subTitle: "Where impact meets execution",
+  text: `Selected roles and the impact delivered across frontend, backend, and platform work. Security, performance, and developer velocity are always first-class citizens.`,
+
+}
 
 export default function Experience() {
   const container = useRef(null);
@@ -112,18 +95,13 @@ export default function Experience() {
       ctx.revert();
     };
   }, []);
-
-  // ringkas & rapi untuk teks header
-  const headerText =
-    "Selected roles and the impact delivered across frontend, backend, and platform work. Security, performance, and developer velocity are always first-class citizens.";
-
   return (
     <section id="experience" ref={container} className="relative py-20">
       {/* HEADER pakai AnimatedHeaderSection */}
       <AnimatedHeaderSection
-        subTitle="Where impact meets execution"
-        title="Experience"
-        text={headerText}
+        subTitle={experienceMeta.subTitle}
+        title={experienceMeta.title}
+        text={experienceMeta.text}
         textColor="text-white"
         withScrollTrigger={true}
       />
