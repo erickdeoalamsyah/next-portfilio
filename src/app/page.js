@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Script from 'next/script';
 import Navbar from "../sections/Navbar";
 import Hero from "../sections/Hero";
 import ServiceSummary from "../sections/ServiceSummary";
@@ -22,8 +23,29 @@ const App = () => {
       setIsReady(true);
     }
   }, [progress]);
+    
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Eric Deo Alamsyah',
+    url: 'https://erickdeoalamsyah.web.id',
+    jobTitle: 'Full-Stack Web Engineer',
+    description:
+      'Full-Stack Web Engineer yang fokus ke Next.js, Node.js, PostgreSQL, dan sistem produksi yang stabil & cepat.',
+    sameAs: [
+      'https://www.linkedin.com/in/ericdeoalamsyah',
+      'https://github.com/erickdeoalamsyah'
+    ]
+  };
 
   return (
+    <>
+      <Script
+        id="ld-json-home"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <ReactLenis root className="relative w-screen min-h-screen overflow-x-auto">
       {!isReady && (
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white transition-opacity duration-700 font-light">
@@ -55,6 +77,7 @@ const App = () => {
         <Contact />
       </div>
     </ReactLenis>
+    </>
   );
 };
 

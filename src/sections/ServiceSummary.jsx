@@ -8,8 +8,19 @@ import { ScrollTrigger } from "gsap/all";
 import Particles from "../components/Particle"; 
 gsap.registerPlugin(ScrollTrigger);
 
+const serviceSummaryMeta={
+  id: "servicesummary",
+  titleService1: "Architucture",
+  titleService2: "Development",
+  titleService3: "Deployment",
+  titleService4a: "APIs",
+  titleService4b: "Frontends",
+  titleService4c: "Scalability",
+  titleService5: "Databases",
+
+}
 const ServiceSummary = () => {
-  // ... (Logika State dan handleMouseMove/handleMouseLeave tetap sama)
+  // ... (Logika State dan handleMouseMove/handleMouseLeave)
   const [isHovering, setIsHovering] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -26,17 +37,14 @@ const ServiceSummary = () => {
   }
 
   useGSAP(() => {
-    // ----------------------------------------------------
-    // GSAP: Animasi Responsif
-    // ----------------------------------------------------
     let mm = gsap.matchMedia();
 
-    // 1. Desktop (min-width: 768px): Animasi XPercent Agresif
+    // Desktop (min-width: 768px): Animasi XPercent Agresif
     mm.add("(min-width: 768px)", () => {
       // Posisi Awal (Offset) untuk desktop
       gsap.set("#title-service-2", { x: '4rem' }); 
       gsap.set("#title-service-3", { x: '-12rem' }); 
-      gsap.set("#title-service-4", { x: '12rem' }); // Set Databases ke posisi awal kanan
+      gsap.set("#title-service-4", { x: '12rem' }); 
 
       // Animasi XPercent Parallax
       gsap.to("#title-service-1", { xPercent: 20, scrollTrigger: { target: "#title-service-1", scrub: true } });
@@ -45,25 +53,24 @@ const ServiceSummary = () => {
       gsap.to("#title-service-4", { xPercent: -100, scrollTrigger: { target: "#title-service-4", scrub: true } });
     });
 
-    // 2. Mobile (max-width: 767px): Animasi Fade In Vertikal
+    //  Mobile (max-width: 767px): Animasi Fade In Vertikal
     mm.add("(max-width: 767px)", () => {
       // Posisi Awal (Reset) untuk mobile
-      // Menggunakan gsap.set untuk memastikan posisi awal di tengah (x: 0)
       gsap.set(["#title-service-1", "#title-service-2", "#title-service-3", "#title-service-4"], { 
-          x: 0, // Wajib reset horizontal
-          opacity: 0.2, // Mulai dari hampir transparan
-          y: 20 // Mulai dari sedikit di bawah
+          x: 0, 
+          opacity: 0.2, 
+          y: 20 
       });
       
       // Animasi YPercent/Opacity saat di-scroll
       gsap.to(["#title-service-1", "#title-service-2", "#title-service-3", "#title-service-4"], {
           opacity: 1,
           y: 0,
-          stagger: 0.1, // Beri sedikit jeda antar baris
+          stagger: 0.1, 
           scrollTrigger: {
               trigger: "section",
-              start: "top 85%", // Mulai muncul ketika section masuk
-              end: "bottom 15%", // Selesai muncul sebelum section habis
+              start: "top 85%", 
+              end: "bottom 15%", 
               scrub: 1,
           }
       });
@@ -103,11 +110,10 @@ const ServiceSummary = () => {
         onMouseMove={handleMouseMove} 
         onMouseLeave={handleMouseLeave}
       >
-        {/* Konten Teks Anda (Hapus semua kelas translate-x-XX) */}
         
         {/* ID 1 */}
         <div id="title-service-1">
-          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">Architucture</p>
+          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService1}</p>
         </div>
         
         {/* ID 2 */}
@@ -115,9 +121,9 @@ const ServiceSummary = () => {
           id="title-service-2"
           className="flex items-center justify-center gap-3"
         >
-          <p className="font-normal bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">Development</p>
+          <p className="font-normal bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService2}</p>
           <div className="w-10 h-1 md:w-32 bg-white" />
-          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">Deployment</p>
+          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService3}</p>
         </div>
         
         {/* ID 3 */}
@@ -125,16 +131,16 @@ const ServiceSummary = () => {
           id="title-service-3"
           className="flex items-center justify-center gap-3"
         >
-          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">APIs</p>
+          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService4a}</p>
           <div className="w-10 h-1 md:w-32 bg-white" />
-          <p className="italic bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">Frontends</p>
+          <p className="italic bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService4b}</p>
           <div className="w-10 h-1 md:w-32 bg-white" />
-          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">Scalability</p>
+          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService4c}</p>
         </div>
         
         {/* ID 4 */}
         <div id="title-service-4">
-          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">Databases</p>
+          <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService5}</p>
         </div>
       </div>
     </section>

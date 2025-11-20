@@ -4,6 +4,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Link } from "react-scroll";
 
+const navbarMeta={
+  id: "navbar",
+  navMenu: ["home", "services", "about", "work", "contact"],
+}
 const Navbar = () => {
   const navRef = useRef(null);
   const linksRef = useRef([]);
@@ -102,7 +106,7 @@ const Navbar = () => {
         className="fixed z-50 flex flex-col justify-between w-full h-full px-10 uppercase bg-black/98 text-white/80 py-28 gap-y-10 md:w-1/2 md:left-1/2"
       >
         <div className="flex flex-col text-5xl gap-y-2 md:text-5xl lg:text-7xl">
-          {["home", "services", "about", "work", "contact"].map(
+          {navbarMeta.navMenu.map(
             (section, index) => (
               <div key={index} ref={(el) => (linksRef.current[index] = el)}>
                 <Link

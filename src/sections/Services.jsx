@@ -102,18 +102,23 @@ import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
+const servicesMeta={
+  id: "services",
+  subTitle: "Behind the scene, Beyond the screen",
+  title: "Service",
+  text: `I build secure, high-performance full-stack apps
+    with smooth UX to drive growth 
+    not headaches.`,
+}
 const Services = () => {
   // State untuk melacak apakah komponen sudah selesai di-mount di client
   const [isMounted, setIsMounted] = useState(false);
   
-  // Gunakan useEffect untuk mengatur isMounted menjadi true setelah mount
+  // useEffect untuk mengatur isMounted menjadi true setelah mount
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const text = `I build secure, high-performance full-stack apps
-    with smooth UX to drive growth 
-    not headaches.`;
   const serviceRefs = useRef([]);
   
   // isDesktop tetap digunakan untuk logic, tetapi style-nya menunggu mount
@@ -135,15 +140,11 @@ const Services = () => {
     });
   }, []);
 
-  // Fungsi untuk mendapatkan style yang benar
   const getStyle = (index) => {
-    // 1. Jika belum di-mount, kembalikan style yang TIDAK bergantung pada media query
-    // atau properti client. Kita gunakan yang paling aman: { top: 0 }
     if (!isMounted) {
       return { top: 0 };
     }
 
-    // 2. Jika sudah di-mount, terapkan logic media query yang sesungguhnya
     if (isDesktop) {
       return {
         top: `calc(10vh + ${index * 5}em)`,
@@ -157,9 +158,9 @@ const Services = () => {
   return (
     <section id="services" className=" mt-20 min-h-screen rounded-t-4xl">
       <AnimatedHeaderSection
-        subTitle={"Behind the scene, Beyond the screen"}
-        title={"Service"}
-        text={text}
+        subTitle={servicesMeta.subTitle}
+        title={servicesMeta.title}
+        text={servicesMeta.text}
         textColor={"text-white"}
         withScrollTrigger={true}
       />
