@@ -57,10 +57,7 @@ export const metadata = {
     description:
       'Portfolio Eric Deo: proyek Next.js, Node.js, dan sistem produksi yang benar-benar dipakai bisnis.',
     images: ['/og-image.png']
-  },
-    verification: {
-        google: <meta name="google-site-verification" content="gzfoeRFuQNAQd-6aSnmbmGVPuNCLitNpgnLeNWHaQjU" />, 
-    },  
+  }, 
   robots: {
     index: true,
     follow: true
