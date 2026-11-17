@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 // Import komponen material Three.js
-import { MeshStandardMaterial, Color } from "three";
+import { MeshStandardMaterial, Color, MathUtils } from "three";
 
-export function Planet(props) {
+export function Planet({ pointer, ...props }) {
   const shapeContainer = useRef(null);
   const shperesContainer = useRef(null);
   const ringContainer = useRef(null);
@@ -27,7 +28,7 @@ export function Planet(props) {
     // Animasi muncul dari bawah
     tl.from(shapeContainer.current.position, {
       y: 5,
-      duration: 3,
+      duration: 0.9,
       ease: "circ.out",
     });
 
@@ -38,7 +39,7 @@ export function Planet(props) {
         x: 0,
         y: Math.PI,
         z: -Math.PI,
-        duration: 10,
+        duration: 2.2,
         ease: "power1.inOut",
       },
       "-=25%"
@@ -51,7 +52,7 @@ export function Planet(props) {
         x: 0.8,
         y: 0,
         z: 0,
-        duration: 10,
+        duration: 2.2,
         ease: "power1.inOut",
       },
       "<"
@@ -75,6 +76,38 @@ export function Planet(props) {
       delay: tl.duration(), // Mulai setelah timeline intro selesai
     });
   }, []);
+
+  /**
+   * Rotasi mengikuti kursor.
+   *
+   * Diterapkan di grup terluar (shapeContainer) supaya tidak bentrok dengan
+   * GSAP: timeline di atas hanya menyentuh position grup ini, sedangkan rotasi
+   * idle planet & cincin berjalan di grup anak. Jadi keduanya bisa jalan
+   * bersamaan — planet tetap berputar sendiri sambil ikut arah kursor.
+   */
+  useFrame((state, delta) => {
+    if (!shapeContainer.current) return;
+
+    const dt = Math.min(delta, 0.05); // jaga-jaga setelah pindah tab
+    const cursor = pointer?.current;
+    const active = cursor?.active ?? false;
+
+    const targetY = active ? cursor.x * 0.6 : 0;
+    const targetX = active ? -cursor.y * 0.35 : 0;
+
+    shapeContainer.current.rotation.y = MathUtils.damp(
+      shapeContainer.current.rotation.y,
+      targetY,
+      4,
+      dt
+    );
+    shapeContainer.current.rotation.x = MathUtils.damp(
+      shapeContainer.current.rotation.x,
+      targetX,
+      4,
+      dt
+    );
+  });
 
   return (
     <group ref={shapeContainer} {...props} dispose={null}>

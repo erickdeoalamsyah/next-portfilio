@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Planet } from "../components/Planet";
 import { Environment, Float, Lightformer } from "@react-three/drei";
@@ -20,11 +21,36 @@ const heroMeta = {
 const Hero = () => {
   const isMobile = useMediaQuery({ maxWidth: 853 });
 
+  /**
+   * Posisi kursor dalam rentang -1..1, dipakai Planet untuk ikut berputar.
+   *
+   * Disimpan di ref, bukan state: nilainya berubah tiap gerakan mouse dan
+   * hanya dibaca di dalam loop render three.js, jadi tidak perlu re-render
+   * React sama sekali.
+   *
+   * Pelacakan dipasang di <section> karena canvas berada di lapisan -z-50 di
+   * belakang teks, sehingga tidak pernah menerima event pointer sendiri.
+   */
+  const pointer = useRef({ x: 0, y: 0, active: false });
+
+  const handlePointerMove = useCallback((event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    pointer.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.current.y = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+    pointer.current.active = true;
+  }, []);
+
+  const handlePointerLeave = useCallback(() => {
+    pointer.current.active = false;
+  }, []);
+
   return (
     <section
       id={heroMeta.id}
       className="flex flex-col justify-end min-h-screen"
       aria-label="Hero section Eric Deo Alamsyah"
+      onMouseMove={handlePointerMove}
+      onMouseLeave={handlePointerLeave}
     >
       <AnimatedHeaderSection
         subTitle={heroMeta.role}
@@ -38,8 +64,8 @@ const Hero = () => {
             download
             aria-label="Download CV Eric Deo Alamsyah"
             className="
-              inline-flex items-center gap-2 px-6 py-3 border border-white/30       
-              bg-gradient-to-b from-[#0d021a] via-[#12052a] to-slate-950 text-white rounded-full 
+              inline-flex items-center gap-2 px-6 py-3 border border-white/30
+              bg-gradient-to-b from-[#0d021a] via-[#12052a] to-slate-950 text-white rounded-full
               text-sm md:text-lg tracking-wider
               shadow-lg shadow-white/20 transition-all duration-300
               hover:bg-blue-700 hover:scale-[1.03]
@@ -54,15 +80,20 @@ const Hero = () => {
 
       <figure
         className="absolute inset-0 -z-50"
-        style={{ width: "100vw", height: "100vh" }}
+        // 100vw memicu scroll horizontal saat scrollbar muncul, dan 100vh
+        // melompat-lompat saat address bar mobile menyusut. 100%/100svh aman.
+        style={{ width: "100%", height: "100svh" }}
       >
         <Canvas
-          shadows
+          // Tidak ada lampu yang castShadow di scene ini, jadi shadow map hanya
+          // menambah biaya tanpa hasil. dpr dibatasi supaya HP ber-DPR 3 tidak
+          // merender 9x piksel.
+          dpr={[1, isMobile ? 1.5 : 1.75]}
           camera={{ position: [0, 0, -10], fov: 17.5, near: 1, far: 20 }}
         >
           <ambientLight intensity={0.5} />
           <Float speed={0.5}>
-            <Planet scale={isMobile ? 0.7 : 1} />
+            <Planet scale={isMobile ? 0.7 : 1} pointer={pointer} />
           </Float>
           <Environment resolution={256}>
             <group rotation={[-Math.PI / 3, 4, 1]}>

@@ -100,7 +100,9 @@ const Works = () => {
     if (typeof window === "undefined" || window.innerWidth < 768) return;
     if (!moveX.current || !moveY.current) return;
     mouse.current.x = e.clientX + 24;
-    mouse.current.y = e.clientY + 24;
+    // Preview sekarang jauh lebih kecil, jadi offset vertikalnya ikut
+    // disesuaikan supaya tetap sejajar kursor (dulu dikompensasi -top-2/6).
+    mouse.current.y = e.clientY - 120;
     moveX.current(mouse.current.x);
     moveY.current(mouse.current.y);
   };
@@ -227,7 +229,7 @@ const Works = () => {
         {/* desktop floating preview */}
         <div
           ref={previewRef}
-          className="fixed -top-2/6 left-0 z-50 overflow-hidden pointer-events-none w-[960px] md:block hidden opacity-0"
+          className="fixed top-0 left-0 z-50 overflow-hidden pointer-events-none w-[340px] lg:w-[420px] rounded-lg md:block hidden opacity-0"
         >
           {currentIndex !== null && (
             <img

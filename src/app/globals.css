@@ -54,6 +54,8 @@ body {
 }
 
 @utility contact-text-responsive {
-  @apply text-[42px] sm:text-[52px] md:text-[62px] lg:text-[100px];
+  /* 42px bikin baris seperti "web application" dan "Scalability" meluber di
+     layar 360-390px; section-nya overflow-hidden jadi teksnya kepotong. */
+  @apply text-[36px] sm:text-[52px] md:text-[62px] lg:text-[100px];
 }
 

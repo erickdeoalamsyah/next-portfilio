@@ -247,6 +247,17 @@ export const socials = [
 
 export const EXPERIENCES = [
   {
+    role: "Fullstack Developer",
+    company: "PT Terakorp Indonesia, Bandung",
+    period: "January 2026 – Present",
+    bullets: [
+      "Membangun dan merawat aplikasi web produksi secara end-to-end — dari desain data dan API sampai antarmuka yang dipakai tim bisnis setiap hari.",
+      "Memegang fitur lintas stack (Next.js/React di depan, Node.js dan basis data relasional di belakang) dengan rilis yang terprediksi.",
+      "Berkoordinasi dengan produk dan desain untuk menerjemahkan kebutuhan menjadi scope yang siap rilis, lalu mengeraskannya lewat review, pengujian, dan perbaikan performa.",
+    ],
+    stack: ["Next.js","React","TypeScript","Node.js","PostgreSQL","Tailwind","Docker","Git"],
+  },
+  {
     role: "Full-stack Developer",
     company: "Skillstory",
     period: "July 2025 – October 2025",
