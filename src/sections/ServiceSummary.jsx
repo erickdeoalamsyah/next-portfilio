@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -21,6 +21,7 @@ const serviceSummaryMeta={
 }
 const ServiceSummary = () => {
   // ... (Logika State dan handleMouseMove/handleMouseLeave)
+  const sectionRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -68,7 +69,10 @@ const ServiceSummary = () => {
           y: 0,
           stagger: 0.1, 
           scrollTrigger: {
-              trigger: "section",
+              // Dulu "section" -> yang kepilih <section> PERTAMA di halaman
+              // (Hero), bukan section ini, jadi animasinya terpicu di waktu
+              // yang salah di HP.
+              trigger: sectionRef.current,
               start: "top 85%", 
               end: "bottom 15%", 
               scrub: 1,
@@ -81,7 +85,10 @@ const ServiceSummary = () => {
   }, []);
 
   return (
-    <section className="mt-20 overflow-hidden font-light leading-snug text-center contact-text-responsive relative min-h-screen">
+    <section
+      ref={sectionRef}
+      className="mt-20 overflow-hidden font-light leading-snug text-center contact-text-responsive relative min-h-screen"
+    >
       
       {/* Latar Belakang Partikel (z-0) */}
       <div className="absolute inset-0 z-0 min-h-screen">
@@ -119,22 +126,22 @@ const ServiceSummary = () => {
         {/* ID 2 */}
         <div
           id="title-service-2"
-          className="flex items-center justify-center gap-3"
+          className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3"
         >
           <p className="font-normal bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService2}</p>
-          <div className="w-10 h-1 md:w-32 bg-white" />
+          <div className="w-16 h-0.5 md:w-32 md:h-1 bg-white" />
           <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService3}</p>
         </div>
         
         {/* ID 3 */}
         <div
           id="title-service-3"
-          className="flex items-center justify-center gap-3"
+          className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3"
         >
           <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService4a}</p>
-          <div className="w-10 h-1 md:w-32 bg-white" />
+          <div className="w-16 h-0.5 md:w-32 md:h-1 bg-white" />
           <p className="italic bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService4b}</p>
-          <div className="w-10 h-1 md:w-32 bg-white" />
+          <div className="w-16 h-0.5 md:w-32 md:h-1 bg-white" />
           <p className="bg-gradient-to-b from-white via-slate-300 to-slate-400 bg-clip-text text-transparent">{serviceSummaryMeta.titleService4c}</p>
         </div>
         

@@ -151,7 +151,7 @@ export default function Experience() {
                   space-y-2
                   pl-5 md:pl-6      /* indent konsisten */
                   
-                  text-justify       /* PENTING: selalu rata kiri */
+                  text-left          /* PENTING: selalu rata kiri */
                 `}
               >
                 {e.bullets.map((b, j) => (

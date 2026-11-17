@@ -95,7 +95,7 @@ export function Planet(props) {
   const ringContainer = useRef(null);
   const { nodes, materials } = useGLTF("/models/Planet.glb");
 
-  const planetMaterial = new MeshStandardMaterial({
+  const planetMaterial = new MeshStnpandardMaterial({
     color: new Color("#0B1530"),
   });
   const ringMaterial = new MeshStandardMaterial({

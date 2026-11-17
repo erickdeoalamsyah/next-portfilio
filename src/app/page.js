@@ -15,14 +15,24 @@ import Experience from "../sections/Experiences";
 import Skills from "../sections/Skills";
 
 const App = () => {
-  const { progress } = useProgress();
+  const { progress, active } = useProgress();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (progress === 100) {
+    // active jadi false saat antrean loader kosong. Tanpa cek ini, model
+    // yang sudah ada di cache browser bisa selesai sebelum komponen sempat
+    // berlangganan, dan progress tertahan di 0 selamanya.
+    if (progress === 100 || (!active && progress > 0)) {
       setIsReady(true);
     }
-  }, [progress]);
+  }, [progress, active]);
+
+  // Jaring pengaman: kalau model gagal atau lambat dimuat, pengunjung tidak
+  // terjebak di layar loading selamanya.
+  useEffect(() => {
+    const timer = setTimeout(() => setIsReady(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
     
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -46,7 +56,7 @@ const App = () => {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    <ReactLenis root className="relative w-screen min-h-screen overflow-x-auto">
+    <ReactLenis root className="relative w-full min-h-screen overflow-x-hidden">
       {!isReady && (
         <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white transition-opacity duration-700 font-light">
           <p className="mb-4 text-xl tracking-widest animate-pulse">
@@ -63,7 +73,7 @@ const App = () => {
       <div
         className={`${
           isReady ? "opacity-100" : "opacity-0"
-        } transition-opacity duration-1000`}
+        } transition-opacity duration-500`}
       >
         <Navbar />
         <Hero />

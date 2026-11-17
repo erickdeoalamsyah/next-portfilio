@@ -62,7 +62,7 @@ const About = () => {
           ref={imgRef}
           src="images/profileErick.webp"
           alt="man"
-          className="w-md rounded-3xl"
+          className="w-full max-w-sm lg:max-w-md rounded-3xl"
         />
         <AnimatedTextLines text={AboutMeta.aboutText} className={"w-full text-sm md:text-2xl "} />
       </div>
